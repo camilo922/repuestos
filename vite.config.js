@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite'
 
-// The site is served from the custom domain telascolombia.com.co
-// (root path), so base is '/'. If it ever goes back to
-// <user>.github.io/telas-de-colombia/, set base to '/telas-de-colombia/'.
+// Si el sitio se sirve desde un dominio propio (raíz), base es '/'.
+// Si se sirve desde <usuario>.github.io/repuestos/, cambiar base a '/repuestos/'.
 export default defineConfig({
   base: '/',
   build: {

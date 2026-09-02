@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Mazda">
+  <rect width="800" height="500" fill="#1f4e79"/>
+  <g fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 330 l60 -110 h300 l90 110 z"/>
+    <circle cx="250" cy="345" r="42"/>
+    <circle cx="540" cy="345" r="42"/>
+    <path d="M210 220 v-40 h260"/>
+  </g>
+  <text x="400" y="430" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="40" font-weight="600" fill="#ffffff" text-anchor="middle">Mazda</text>
+  <text x="400" y="470" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="20" fill="rgba(255,255,255,0.8)" text-anchor="middle">Repuestos Mazda 2, 3, CX-5, BT-50 y más</text>
+</svg>
