@@ -132,28 +132,13 @@ summary {
   text-decoration: none;
 }
 
-.brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: var(--radius);
-  background: var(--primary);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-}
-
-.brand-mark svg {
-  width: 22px;
-  height: 22px;
-}
-
-.brand small {
+.brand-logo {
+  height: 38px;
+  width: auto;
   display: block;
-  font-size: 0.72rem;
-  font-weight: 400;
-  color: var(--dark-muted);
-  line-height: 1.1;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: var(--radius);
 }
 
 .nav-toggle {
@@ -1127,9 +1112,5 @@ textarea.form-control {
   .talleres h2,
   .ubicacion-info h2 {
     font-size: 1.6rem;
-  }
-
-  .brand small {
-    display: none;
   }
 }
