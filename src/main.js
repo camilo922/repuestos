@@ -3,7 +3,7 @@ import { MARCAS } from './data/vehiculos.js'
 
 // Número de WhatsApp del negocio (sin "+"). Se usa en todos los enlaces
 // data-wa y en el formulario de cotización.
-const WHATSAPP = document.body.dataset.whatsapp || '573000000000'
+const WHATSAPP = document.body.dataset.whatsapp || '573245843313'
 
 // --- Selector de vehículo ------------------------------------
 // Marca → Modelo → Año → mensaje de WhatsApp prellenado.

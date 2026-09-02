@@ -1,27 +1,28 @@
 /* ============================================================
-   Repuestos Colombia — tokens de diseño
-   Estética tomada de carcarekiosk.com (Bootstrap 4):
-   navbar oscura, fondo blanco, azul primario, tarjetas con
-   borde suave y tipografía del sistema.
+   Mi Repuesto 2 — tokens de diseño
+   Paleta tomada del logo (naranja + negro sobre blanco),
+   navbar oscura, tarjetas con borde suave, tipografía bold
+   para títulos (Archivo Black) y Poppins para el resto.
    ============================================================ */
 :root {
   --bg: #ffffff;
   --bg-alt: #f8f9fa;
-  --ink: #212529;
-  --body: #495057;
-  --muted: #6c757d;
+  --ink: #1a1a1a;
+  --body: #4a4a4a;
+  --muted: #6c6c6c;
   --faint: #adb5bd;
-  --line: #dee2e6;
+  --line: #e2e2e2;
   --line-soft: rgba(0, 0, 0, 0.125);
   --surface: #ffffff;
 
-  --primary: #007bff;
-  --primary-hover: #0069d9;
-  --primary-active: #0062cc;
-  --primary-soft: #e7f1ff;
+  --primary: #f5821f;
+  --primary-hover: #d96e0f;
+  --primary-active: #c25f09;
+  --primary-soft: #fdece0;
+  --primary-rgb: 245, 130, 31;
 
-  --dark: #343a40;
-  --dark-hover: #23272b;
+  --dark: #1c1c1c;
+  --dark-hover: #0e0e0e;
   --dark-fg: #ffffff;
   --dark-muted: rgba(255, 255, 255, 0.6);
   --dark-line: rgba(255, 255, 255, 0.15);
@@ -34,8 +35,9 @@
   --radius-lg: 0.5rem;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-display: 'Archivo Black', var(--font);
 }
 
 /* ============================================================
@@ -291,9 +293,11 @@ summary {
 
 .hero h1 {
   margin: 0 0 16px;
-  font-size: 2.5rem;
-  line-height: 1.2;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  line-height: 1.15;
+  font-weight: 400;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
@@ -428,8 +432,8 @@ textarea.form-control {
 
 .form-control:focus {
   outline: 0;
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
 }
 
 .form-control:disabled {
@@ -472,9 +476,11 @@ textarea.form-control {
 .section-head h2,
 .section-title {
   margin: 0;
-  font-size: 1.9rem;
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.25;
 }
 
 .section-title {
@@ -525,24 +531,6 @@ textarea.form-control {
   color: var(--muted);
 }
 
-.modelos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.modelos li {
-  font-size: 0.8rem;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  color: var(--body);
-}
-
 .marca-card .btn {
   margin-top: auto;
   align-self: flex-start;
@@ -553,7 +541,7 @@ textarea.form-control {
    ============================================================ */
 .categorias-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
@@ -573,7 +561,7 @@ textarea.form-control {
   text-decoration: none;
   color: var(--ink);
   border-color: var(--primary);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.15);
 }
 
 .categoria-icon {

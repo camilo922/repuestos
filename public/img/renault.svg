@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Renault">
+  <rect width="800" height="500" fill="#ffcc00"/>
+  <g fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 330 l60 -110 h300 l90 110 z"/>
+    <circle cx="250" cy="345" r="42"/>
+    <circle cx="540" cy="345" r="42"/>
+    <path d="M210 220 v-40 h260"/>
+  </g>
+  <text x="400" y="430" font-family="Archivo Black,-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="40" font-weight="400" fill="#1a1a1a" text-anchor="middle">RENAULT</text>
+  <text x="400" y="470" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="20" fill="rgba(0,0,0,0.65)" text-anchor="middle">Carrocería y plásticos originales</text>
+</svg>
