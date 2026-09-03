@@ -143,6 +143,20 @@ function initAnnounceBar() {
   }, 4500)
 }
 
+// --- Logos que alternan (ej. Kia: logo anterior / actual) ------
+function initLogoFade() {
+  document.querySelectorAll('.logo-fade').forEach((wrap) => {
+    const items = wrap.querySelectorAll('.logo-fade-item')
+    if (items.length < 2) return
+    let index = 0
+    setInterval(() => {
+      items[index].classList.remove('is-active')
+      index = (index + 1) % items.length
+      items[index].classList.add('is-active')
+    }, 3000)
+  })
+}
+
 // --- Tracking (Meta Pixel + Google Ads) ------------------------
 // Los pixeles solo se cargan si los IDs placeholder fueron
 // reemplazados por valores reales en index.html.
@@ -245,5 +259,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSelector()
   initNav()
   initAnnounceBar()
+  initLogoFade()
   initTracking()
 })
