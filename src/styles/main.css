@@ -352,6 +352,11 @@ summary {
   text-wrap: pretty;
 }
 
+.hero-lead strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .hero-checks {
   display: flex;
   flex-direction: column;
