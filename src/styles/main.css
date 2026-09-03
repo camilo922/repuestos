@@ -135,7 +135,7 @@ summary {
 }
 
 .brand-logo {
-  height: 38px;
+  height: 46px;
   width: auto;
   display: block;
   background: #fff;
@@ -274,6 +274,13 @@ summary {
 /* ============================================================
    Hero + selector de vehículo
    ============================================================ */
+.top-logo {
+  display: block;
+  height: 110px;
+  width: auto;
+  margin: 32px auto 0;
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -495,12 +502,6 @@ textarea.form-control {
   text-align: right;
 }
 
-.section-link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
 /* ============================================================
    Marcas
    ============================================================ */
@@ -636,104 +637,6 @@ textarea.form-control {
   margin: 0;
   font-size: 0.9rem;
   color: var(--muted);
-}
-
-/* ============================================================
-   Reseñas
-   ============================================================ */
-.reviews-layout {
-  display: grid;
-  grid-template-columns: 0.7fr 2fr;
-  gap: 20px;
-  align-items: stretch;
-}
-
-.rating-card {
-  padding: 28px;
-  justify-content: center;
-  gap: 8px;
-}
-
-.rating-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.rating-num {
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.rating-stars,
-.stars {
-  color: var(--star);
-  letter-spacing: 0.1em;
-}
-
-.rating-stars {
-  font-size: 1.25rem;
-}
-
-.rating-count {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.review {
-  margin: 0;
-  padding: 20px;
-  gap: 14px;
-}
-
-.review-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 0.9rem;
-}
-
-.review-date {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.review blockquote {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--body);
-  flex: 1;
-  text-wrap: pretty;
-}
-
-.review figcaption {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--primary-soft);
-  color: var(--primary);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
 }
 
 /* ============================================================
@@ -943,6 +846,16 @@ textarea.form-control {
   font-size: 0.82rem;
 }
 
+.footer-logo {
+  display: block;
+  height: 90px;
+  width: auto;
+  margin: 0 auto 24px;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+}
+
 .footer-row {
   display: flex;
   align-items: center;
@@ -1035,17 +948,12 @@ textarea.form-control {
     padding: 40px 0 48px;
   }
 
-  .marcas-grid,
-  .reviews-grid {
+  .marcas-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .categorias-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .reviews-layout {
-    grid-template-columns: 1fr;
   }
 
   .razones-grid {
@@ -1085,7 +993,6 @@ textarea.form-control {
   }
 
   .marcas-grid,
-  .reviews-grid,
   .razones-grid,
   .form-row {
     grid-template-columns: 1fr;
