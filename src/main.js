@@ -131,6 +131,18 @@ function initNav() {
   nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => nav.classList.remove('is-open')))
 }
 
+// --- Banner de textos rotativos ---------------------------------
+function initAnnounceBar() {
+  const items = document.querySelectorAll('.announce-item')
+  if (items.length < 2) return
+  let index = 0
+  setInterval(() => {
+    items[index].classList.remove('is-active')
+    index = (index + 1) % items.length
+    items[index].classList.add('is-active')
+  }, 4500)
+}
+
 // --- Tracking (Meta Pixel + Google Ads) ------------------------
 // Los pixeles solo se cargan si los IDs placeholder fueron
 // reemplazados por valores reales en index.html.
@@ -232,5 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initWaLinks()
   initSelector()
   initNav()
+  initAnnounceBar()
   initTracking()
 })
