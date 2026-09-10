@@ -58,11 +58,18 @@
 
 html {
   scroll-behavior: smooth;
+  /* En iOS Safari el elemento que realmente controla el scroll a
+     veces es <html>, no <body> (que ya tenia overflow-x:hidden) -
+     sin esto un desborde horizontal minimo se cuela igual y deja
+     una banda en blanco a la derecha. */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
+  max-width: 100%;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
