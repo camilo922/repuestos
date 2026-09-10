@@ -595,10 +595,22 @@ textarea.form-control {
 /* ============================================================
    Marcas — banda naranja de logos en carrusel continuo
    ============================================================ */
+/* Por debajo de 1171px el .container ya ocupa el 100% del viewport
+   (su max-width de 1140px todavia no aplica), asi que basta con
+   cancelar su padding de 15px para llegar borde a borde. Evitamos
+   100vw aqui porque en iOS Safari puede calcularse mas ancho que la
+   pantalla real y dejaba una banda blanca a la derecha. */
 .marcas-marquee-bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+@media (min-width: 1171px) {
+  .marcas-marquee-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
 }
 
 .marcas-marquee {
