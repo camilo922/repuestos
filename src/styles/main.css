@@ -814,6 +814,14 @@ textarea.form-control {
 /* ============================================================
    Por qué comprarnos
    ============================================================ */
+.section--razones {
+  padding-bottom: 40px;
+}
+
+.section--razones .section-title {
+  margin-bottom: 40px;
+}
+
 .razones-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -823,11 +831,9 @@ textarea.form-control {
 .razon {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
   padding-top: 16px;
   border-top: 3px solid var(--primary);
-  text-align: center;
 }
 
 .razon h3 {
