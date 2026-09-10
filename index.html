@@ -15,7 +15,12 @@
     <link rel="apple-touch-icon" href="/favicon-192.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <!-- Carga la hoja de Google Fonts sin bloquear el primer render:
+         se pide con prioridad alta (preload) pero se aplica recien
+         cuando termina de llegar (truco media="print" -> "all"). -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" /></noscript>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Mi Repuesto 2" />
     <meta property="og:title" content="Repuestos de Salvamento Originales en Medellín | Mi Repuesto 2" />
@@ -287,17 +292,17 @@
         <div class="categorias-grid">
           <button type="button" class="categoria" data-categoria="Puertas" data-track-label="categoria-puertas">
             <h3>Puertas</h3>
-            <p>Delanteras y traseras, con vidrio y manijas.</p>
+            <p>Delanteras y traseras, con vidrio y manijas, listas para pintar al tono de tu carro.</p>
             <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Cotizar</span>
           </button>
           <button type="button" class="categoria" data-categoria="Bumpers" data-track-label="categoria-bumpers">
             <h3>Bumpers</h3>
-            <p>Delantero y trasero, listas para pintar al tono del cliente.</p>
+            <p>Delantero y trasero, listas para pintar al tono de tu carro.</p>
             <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Cotizar</span>
           </button>
           <button type="button" class="categoria" data-categoria="Capó" data-track-label="categoria-capo">
             <h3>Capós</h3>
-            <p>Capó original y guardapolvo para toda marca.</p>
+            <p>Capó original y guardapolvo para toda marca, listo para pintar al tono de tu carro.</p>
             <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Cotizar</span>
           </button>
           <button type="button" class="categoria" data-categoria="Guías" data-track-label="categoria-guias">
@@ -307,7 +312,7 @@
           </button>
           <button type="button" class="categoria" data-categoria="Guardabarros" data-track-label="categoria-guardabarros">
             <h3>Guardabarros</h3>
-            <p>Aletas delanteras y traseras, originales.</p>
+            <p>Aletas delanteras y traseras, originales, listas para pintar al tono de tu carro.</p>
             <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Cotizar</span>
           </button>
           <button type="button" class="categoria" data-categoria="Espejo lateral" data-track-label="categoria-espejos">
