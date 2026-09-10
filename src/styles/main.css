@@ -825,7 +825,9 @@ textarea.form-control {
   flex-direction: column;
   gap: 8px;
   padding-top: 16px;
+  padding-bottom: 16px;
   border-top: 3px solid var(--primary);
+  border-bottom: 1px solid var(--line);
 }
 
 .razon h3 {
