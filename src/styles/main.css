@@ -1071,7 +1071,17 @@ textarea.form-control {
   gap: 12px;
 }
 
+.ubicacion-ctas .btn {
+  width: 100%;
+}
+
 .btn-instagram {
+  /* El texto es mas largo que el de los demas botones: a diferencia
+     del resto de .btn (white-space:nowrap) este si debe poder saltar
+     de linea, si no fuerza el ancho de toda la pagina en movil y el
+     texto queda cortado. */
+  white-space: normal;
+  text-align: center;
   /* Capa negra semitransparente encima del degradado real de Instagram:
      mantiene los 3 tonos reconocibles pero los oscurece lo suficiente
      para que el texto blanco tenga 4.5:1 de contraste en todo el
