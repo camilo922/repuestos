@@ -607,7 +607,6 @@ textarea.form-control {
   background: var(--primary);
   padding: 22px 0;
   cursor: grab;
-  touch-action: pan-y;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }

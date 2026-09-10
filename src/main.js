@@ -236,11 +236,13 @@ function initMarcasMarquee() {
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const halfWidth = () => track.scrollWidth / 2
 
-  let isDragging = false
+  let isDragging = false // arrastre manual con mouse
   let dragged = false
   let startX = 0
   let startScroll = 0
   let lastTime = null
+  let touchActive = false // toque en curso o inercia reciente: pausa el autoplay
+  let touchSettleTimer = null
 
   function wrapScroll() {
     const hw = halfWidth()
@@ -253,7 +255,7 @@ function initMarcasMarquee() {
     if (lastTime == null) lastTime = now
     const dt = (now - lastTime) / 1000
     lastTime = now
-    if (!isDragging && !reduceMotion) {
+    if (!isDragging && !touchActive && !reduceMotion) {
       const speedPerSecond = halfWidth() / 32
       container.scrollLeft += speedPerSecond * dt
       wrapScroll()
@@ -262,6 +264,9 @@ function initMarcasMarquee() {
   }
   requestAnimationFrame(tick)
 
+  // El mouse no tiene arrastre nativo sobre un contenedor con scroll,
+  // así que lo hacemos a mano. En touch dejamos que el navegador maneje
+  // el scroll nativo (más fluido, con inercia) en vez de competir con él.
   // No se usa setPointerCapture: retargetaría el click al contenedor y
   // rompería el clic normal (sin arrastre) sobre un logo.
   function onPointerMove(e) {
@@ -283,6 +288,11 @@ function initMarcasMarquee() {
   }
 
   container.addEventListener('pointerdown', (e) => {
+    if (e.pointerType && e.pointerType !== 'mouse') {
+      touchActive = true
+      clearTimeout(touchSettleTimer)
+      return
+    }
     if (e.button != null && e.button !== 0) return
     isDragging = true
     dragged = false
@@ -293,6 +303,18 @@ function initMarcasMarquee() {
     window.addEventListener('pointerup', endDrag)
     window.addEventListener('pointercancel', endDrag)
   })
+
+  // Al soltar el dedo dejamos que la inercia nativa del scroll termine
+  // antes de retomar el auto-scroll, para que no compitan entre sí.
+  function onTouchRelease(e) {
+    if (e.pointerType === 'mouse') return
+    clearTimeout(touchSettleTimer)
+    touchSettleTimer = setTimeout(() => {
+      touchActive = false
+    }, 600)
+  }
+  container.addEventListener('pointerup', onTouchRelease)
+  container.addEventListener('pointercancel', onTouchRelease)
 
   // Evita que un arrastre abra el diálogo de la marca al soltar.
   track.addEventListener(
