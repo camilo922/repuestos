@@ -1,8 +1,9 @@
 /* ============================================================
    Mi Repuesto 2 — tokens de diseño
-   Paleta tomada del logo (naranja + negro sobre blanco),
-   navbar oscura, tarjetas con borde suave, tipografía bold
-   para títulos (Archivo Black) y Poppins para el resto.
+   Identidad industrial/automotriz: paleta naranja + negro sobre
+   blanco, navbar oscura, tarjetas con borde suave. Títulos en
+   Oswald (bold, mayúsculas, look de señalética de carretera) y
+   Roboto para el cuerpo de texto.
    ============================================================ */
 :root {
   --bg: #ffffff;
@@ -20,6 +21,12 @@
   --primary-active: #c25f09;
   --primary-soft: #fdece0;
   --primary-rgb: 245, 130, 31;
+  /* Version oscurecida del naranja de marca: mismo tono, pero cumple
+     4.5:1 de contraste con blanco (el --primary original solo da
+     2.59:1). Se usa donde hay texto/iconos en vez de solo decoracion
+     (fondos grandes como la banda de marcas siguen con --primary). */
+  --primary-a11y: #ac5b16;
+  --primary-a11y-dark: #874811;
 
   --dark: #1c1c1c;
   --dark-hover: #0e0e0e;
@@ -27,17 +34,19 @@
   --dark-muted: rgba(255, 255, 255, 0.6);
   --dark-line: rgba(255, 255, 255, 0.15);
 
-  --whatsapp: #25d366;
-  --whatsapp-hover: #1ebe5b;
+  /* Verde WhatsApp oscurecido para dar 4.5:1 con texto blanco
+     (el verde oficial #25d366 solo da 1.98:1). */
+  --whatsapp: #178534;
+  --whatsapp-hover: #136b29;
   --star: #f5b301;
 
   --radius: 0.25rem;
   --radius-lg: 0.5rem;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 
-  --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  --font: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  --font-display: 'Archivo Black', var(--font);
+  --font-display: 'Oswald', var(--font);
 }
 
 /* ============================================================
@@ -63,7 +72,7 @@ body {
 }
 
 a {
-  color: var(--primary);
+  color: var(--primary-a11y);
   text-decoration: none;
 }
 
@@ -156,7 +165,7 @@ summary {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--primary-a11y);
   color: #ffffff;
   font-family: 'Anton', var(--font-display);
   font-size: 1rem;
@@ -200,7 +209,7 @@ summary {
    Banner de textos rotativos
    ============================================================ */
 .announce-bar {
-  background: var(--primary);
+  background: var(--primary-a11y);
   color: #ffffff;
 }
 
@@ -264,14 +273,14 @@ summary {
 }
 
 .btn-primary {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--primary-a11y);
+  border-color: var(--primary-a11y);
   color: #ffffff;
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);
-  border-color: var(--primary-active);
+  background: var(--primary-a11y-dark);
+  border-color: var(--primary-a11y-dark);
   color: #ffffff;
 }
 
@@ -290,11 +299,11 @@ summary {
 .btn-outline {
   background: transparent;
   border-color: var(--primary);
-  color: var(--primary);
+  color: var(--primary-a11y);
 }
 
 .btn-outline:hover {
-  background: var(--primary);
+  background: var(--primary-a11y);
   color: #ffffff;
 }
 
@@ -346,8 +355,16 @@ summary {
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--primary);
+  color: var(--primary-a11y);
   font-weight: 600;
+}
+
+/* Sobre fondo oscuro el naranja original ya da 6.6:1 de contraste
+   (el oscurecido --primary-a11y solo da 3.5:1 ahi), asi que en los
+   paneles oscuros se usa el naranja de marca normal. */
+.como-pedir .eyebrow,
+.cta-band .eyebrow {
+  color: var(--primary);
 }
 
 .hero h1 {
@@ -355,7 +372,7 @@ summary {
   font-family: var(--font-display);
   font-size: 2.6rem;
   line-height: 1.15;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -441,7 +458,7 @@ summary {
 .chip:hover {
   text-decoration: none;
   border-color: var(--primary);
-  color: var(--primary);
+  color: var(--primary-a11y);
 }
 
 .stats {
@@ -575,7 +592,7 @@ textarea.form-control {
   margin: 0;
   font-family: var(--font-display);
   font-size: 1.7rem;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 1.25;
 }
@@ -734,8 +751,9 @@ textarea.form-control {
 
 .categoria h3 {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .categoria p {
@@ -753,7 +771,7 @@ textarea.form-control {
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--primary);
+  color: var(--primary-a11y);
 }
 
 .categoria .play svg {
@@ -812,6 +830,7 @@ textarea.form-control {
 
 .cotizar-dialog-form h3 {
   margin: 0 24px 0 0;
+  font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -850,8 +869,9 @@ textarea.form-control {
 
 .razon h3 {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .razon p {
@@ -907,7 +927,7 @@ textarea.form-control {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--primary-a11y);
   color: #ffffff;
   font-size: 0.8rem;
   font-weight: 600;
@@ -933,7 +953,7 @@ textarea.form-control {
   margin: 0 0 8px;
   font-family: var(--font-display);
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 1.25;
 }
@@ -972,11 +992,11 @@ textarea.form-control {
 }
 
 .faq-list summary:hover {
-  color: var(--primary);
+  color: var(--primary-a11y);
 }
 
 .faq-list summary span {
-  color: var(--primary);
+  color: var(--primary-a11y);
   font-weight: 400;
 }
 
@@ -1028,8 +1048,10 @@ textarea.form-control {
 
 .ubicacion-info h2 {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 1.9rem;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .ubicacion-info .btn {
@@ -1043,7 +1065,12 @@ textarea.form-control {
 }
 
 .btn-instagram {
-  background: linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7);
+  /* Capa negra semitransparente encima del degradado real de Instagram:
+     mantiene los 3 tonos reconocibles pero los oscurece lo suficiente
+     para que el texto blanco tenga 4.5:1 de contraste en todo el
+     ancho del boton (el amarillo solo, sin oscurecer, da 1.51:1). */
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7);
   border-color: transparent;
   color: #ffffff;
 }
