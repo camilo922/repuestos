@@ -225,6 +225,88 @@ function initAnnounceBar() {
   }, 7000)
 }
 
+// --- Marcas: banda de logos con auto-scroll y arrastre manual --
+// El usuario puede arrastrar para buscar su marca; al soltar, el
+// desplazamiento automático se reanuda solo.
+function initMarcasMarquee() {
+  const container = document.querySelector('.marcas-marquee')
+  const track = document.querySelector('.marcas-marquee-track')
+  if (!container || !track) return
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const halfWidth = () => track.scrollWidth / 2
+
+  let isDragging = false
+  let dragged = false
+  let startX = 0
+  let startScroll = 0
+  let lastTime = null
+
+  function wrapScroll() {
+    const hw = halfWidth()
+    if (hw <= 0) return
+    if (container.scrollLeft >= hw) container.scrollLeft -= hw
+    else if (container.scrollLeft < 0) container.scrollLeft += hw
+  }
+
+  function tick(now) {
+    if (lastTime == null) lastTime = now
+    const dt = (now - lastTime) / 1000
+    lastTime = now
+    if (!isDragging && !reduceMotion) {
+      const speedPerSecond = halfWidth() / 32
+      container.scrollLeft += speedPerSecond * dt
+      wrapScroll()
+    }
+    requestAnimationFrame(tick)
+  }
+  requestAnimationFrame(tick)
+
+  // No se usa setPointerCapture: retargetaría el click al contenedor y
+  // rompería el clic normal (sin arrastre) sobre un logo.
+  function onPointerMove(e) {
+    if (!isDragging) return
+    const dx = e.clientX - startX
+    if (Math.abs(dx) > 3) dragged = true
+    container.scrollLeft = startScroll - dx
+  }
+
+  function endDrag() {
+    if (!isDragging) return
+    isDragging = false
+    lastTime = null
+    wrapScroll()
+    container.classList.remove('is-dragging')
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', endDrag)
+    window.removeEventListener('pointercancel', endDrag)
+  }
+
+  container.addEventListener('pointerdown', (e) => {
+    if (e.button != null && e.button !== 0) return
+    isDragging = true
+    dragged = false
+    startX = e.clientX
+    startScroll = container.scrollLeft
+    container.classList.add('is-dragging')
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerup', endDrag)
+    window.addEventListener('pointercancel', endDrag)
+  })
+
+  // Evita que un arrastre abra el diálogo de la marca al soltar.
+  track.addEventListener(
+    'click',
+    (e) => {
+      if (dragged) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    },
+    true
+  )
+}
+
 // --- Logos que alternan (ej. Kia: logo anterior / actual) ------
 function initLogoFade() {
   document.querySelectorAll('.logo-fade').forEach((wrap) => {
@@ -342,6 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCotizarDialog()
   initNav()
   initAnnounceBar()
+  initMarcasMarquee()
   initLogoFade()
   initTracking()
 })
