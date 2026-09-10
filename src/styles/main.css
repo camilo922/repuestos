@@ -1024,6 +1024,29 @@ textarea.form-control {
   align-self: flex-start;
 }
 
+.ubicacion-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-instagram {
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b 55%, #6228d7);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.btn-instagram:hover {
+  filter: brightness(0.94);
+  color: #ffffff;
+}
+
+.btn-instagram svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
