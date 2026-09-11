@@ -359,6 +359,10 @@ function adsLabelConfigured() {
   return window.GOOGLE_ADS_CONVERSION_LABEL && window.GOOGLE_ADS_CONVERSION_LABEL !== 'TU_LABEL'
 }
 
+function analyticsConfigured() {
+  return window.GA_MEASUREMENT_ID && window.GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX'
+}
+
 // Con ?track=1 en la URL (o localStorage.track = "1") los eventos se
 // imprimen en consola, útil para verificar el cableado sin IDs reales.
 function debugEnabled() {
@@ -387,18 +391,20 @@ function loadMetaPixel() {
   window.fbq('track', 'PageView')
 }
 
-function loadGoogleAds() {
-  if (!adsConfigured() || window.gtag) return
+function loadGoogleTag() {
+  if ((!adsConfigured() && !analyticsConfigured()) || window.gtag) return
   window.dataLayer = window.dataLayer || []
   window.gtag = function () {
     window.dataLayer.push(arguments)
   }
+  const id = analyticsConfigured() ? window.GA_MEASUREMENT_ID : window.GOOGLE_ADS_ID
   const s = document.createElement('script')
   s.async = true
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GOOGLE_ADS_ID
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id
   document.head.appendChild(s)
   window.gtag('js', new Date())
-  window.gtag('config', window.GOOGLE_ADS_ID)
+  if (analyticsConfigured()) window.gtag('config', window.GA_MEASUREMENT_ID)
+  if (adsConfigured()) window.gtag('config', window.GOOGLE_ADS_ID)
 }
 
 // name: "Contact" (particulares) o "Lead" (talleres / flotas).
@@ -410,13 +416,14 @@ function track(name, label) {
       meta: pixelConfigured(),
       ads: adsConfigured(),
       adsLabel: adsLabelConfigured(),
+      analytics: analyticsConfigured(),
     })
   }
   if (typeof window.fbq === 'function') {
     window.fbq('track', event, { content_name: label, content_category: 'whatsapp' })
   }
-  if (typeof window.gtag === 'function' && adsConfigured()) {
-    if (adsLabelConfigured()) {
+  if (typeof window.gtag === 'function') {
+    if (adsConfigured() && adsLabelConfigured()) {
       window.gtag('event', 'conversion', {
         send_to: window.GOOGLE_ADS_ID + '/' + window.GOOGLE_ADS_CONVERSION_LABEL,
         value: 1.0,
@@ -432,7 +439,7 @@ function track(name, label) {
 
 function initTracking() {
   loadMetaPixel()
-  loadGoogleAds()
+  loadGoogleTag()
   document.querySelectorAll('[data-track="whatsapp"]').forEach((el) => {
     el.addEventListener('click', () => {
       track(el.dataset.trackEvent || 'Contact', el.dataset.trackLabel || 'whatsapp')
