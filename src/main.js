@@ -201,6 +201,33 @@ function formatNumber(n) {
   return m ? `+${m[1]} ${m[2]} ${m[3]} ${m[4]}` : `+${n}`
 }
 
+// --- Header sticky (navbar + banner) ----------------------------
+// El banner de textos rotativos queda pegado justo debajo del navbar.
+// Medimos las alturas reales (en vez de asumir un valor fijo) porque
+// cambian según el tamaño de pantalla y cuando se abre el menú móvil.
+function initStickyHeader() {
+  const navbar = document.querySelector('.navbar')
+  const announce = document.querySelector('.announce-bar')
+  if (!navbar) return
+
+  const root = document.documentElement
+  const update = () => {
+    const navH = navbar.offsetHeight
+    const announceH = announce ? announce.offsetHeight : 0
+    root.style.setProperty('--header-h', `${navH}px`)
+    root.style.setProperty('--sticky-h', `${navH + announceH}px`)
+  }
+  update()
+
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(update)
+    ro.observe(navbar)
+    if (announce) ro.observe(announce)
+  } else {
+    window.addEventListener('resize', update)
+  }
+}
+
 // --- Menú móvil -------------------------------------------------
 function initNav() {
   const toggle = document.querySelector('.nav-toggle')
@@ -451,6 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWaLinks()
   initSelector()
   initCotizarDialog()
+  initStickyHeader()
   initNav()
   initAnnounceBar()
   initMarcasMarquee()
