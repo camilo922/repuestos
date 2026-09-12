@@ -27,7 +27,6 @@ Landing page estática de **Repuestos Colombia** (repuestos para Mazda, Ford y K
 - **Dominio**: `repuestoscolombia.com` es un placeholder en `canonical`, `og:url` y JSON-LD. Si el sitio va a tener dominio propio, agregar `public/CNAME` con el dominio y configurarlo en GitHub Pages.
 - **Fotos**: las imágenes de `public/img/` son placeholders SVG (`mazda.svg`, `ford.svg`, `kia.svg`, `og-repuestos.svg`). Reemplazarlas por fotos reales conservando los nombres (o cambiar las rutas en `index.html`).
 - **Reseñas y cifras**: las reseñas y el "+5.000 referencias" son texto de ejemplo.
-- **NIT/Documento del responsable**: en `terminos.html` y `privacidad.html` hay un placeholder `[completar con NIT o cédula del responsable del negocio]` que debe reemplazarse por el NIT o cédula real, requerido por la Ley 1480 de 2012 para identificar al vendedor.
 
 ## Funcionalidades
 
