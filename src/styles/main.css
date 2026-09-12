@@ -51,8 +51,8 @@
   /* Alturas reales del navbar y del navbar+banner, calculadas por JS
      (initStickyHeader en main.js). Estos valores son solo el respaldo
      inicial antes de que corra el JS. */
-  --header-h: 72px;
-  --sticky-h: 160px;
+  --header-h: 56px;
+  --sticky-h: 128px;
 }
 
 /* ============================================================
@@ -74,6 +74,9 @@ html {
 
 body {
   margin: 0;
+  /* Compensa el espacio que el navbar y el banner (ahora fixed, fuera
+     del flujo normal) dejaron de reservar arriba de la página. */
+  padding-top: var(--sticky-h);
   overflow-x: hidden;
   max-width: 100%;
   background: var(--bg);
@@ -123,11 +126,20 @@ summary {
 }
 
 /* ============================================================
-   Navbar (sticky, oscura como la referencia)
+   Navbar (fija arriba, oscura como la referencia)
    ============================================================ */
+/* position: fixed en vez de sticky: el body/html tienen
+   overflow-x:hidden (arreglo de la banda blanca en iOS Safari), lo
+   que obliga al navegador a convertir el body en su propio
+   contenedor de scroll y eso rompe position:sticky (el navbar y el
+   banner se movían con la página en vez de quedar pegados). Con
+   fixed no depende de eso. Como fixed saca el navbar del flujo, el
+   body compensa el espacio con padding-top: var(--sticky-h). */
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
   background: var(--dark);
   color: var(--dark-fg);
@@ -222,8 +234,10 @@ summary {
    Banner de textos rotativos
    ============================================================ */
 .announce-bar {
-  position: sticky;
+  position: fixed;
   top: var(--header-h);
+  left: 0;
+  right: 0;
   z-index: 45;
   background: var(--primary-a11y);
   color: #ffffff;
